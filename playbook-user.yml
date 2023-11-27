@@ -1,0 +1,24 @@
+---
+
+
+- name: playbook user
+  hosts: all
+  tasks:
+
+
+  - name: création de test
+    user:
+      name: test
+      state: present
+      generate_ssh_key: yes
+      groups: sudo
+      append: yes
+      generate_ssh_key: yes
+      password: "{{ 'password' | password_hash('sha512') }}"
+
+
+  - name: Suppression du user test
+    user:
+            name: test
+            state: absent
+            remove: yes

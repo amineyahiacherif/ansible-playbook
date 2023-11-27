@@ -1,0 +1,20 @@
+---
+
+- name: Mon premier playbook
+  hosts: common
+  tasks:
+          - name: check connexion
+            ping:
+          
+          - name: création du répertoire /tmp/amine
+            file:
+                path: /tmp/amine
+                state: directory              
+                owner: root
+                group: root
+                mode: 0755
+
+          - name: suppression du répertoire /tmp/amine
+            file:
+                 path: /tmp/amine
+                 state: absent
