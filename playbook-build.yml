@@ -1,0 +1,27 @@
+- name: playbook image
+  hosts: all
+  become: yes
+  tasks:
+
+  - name: copy files
+    file:
+      path: /tmp/build
+      state: directory
+
+
+  - name: copy image
+    copy:
+      src: app/
+      dest: /tmp/build
+
+  - name: build
+    docker_image:
+      name: imgbuild
+      tag: v1.0
+      source: build
+      build:
+        path: /tmp/build/
+        dockerfile: Dockerfile
+        cache_from:
+        - alpine:3.9
+
