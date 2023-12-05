@@ -18,3 +18,10 @@
             file:
                  path: /tmp/amine
                  state: absent
+
+          - name: création d'un fichier pour tester
+            file:
+              path: /tmp/file
+              state: file
+              owner: amine
+              group: amine
